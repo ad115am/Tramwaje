@@ -28,10 +28,7 @@ def download_vehicle_positions_pb_old():
         '.eyJpc3MiOiJ0ZXN0Mi56dG0ucG96bmFuLnBsIiwiY29kZSI6MSwibG9naW4iOiJtaFRvcm8iLCJ0aW1lc3RhbXAiOjE1MTM5NDQ4MTJ9.'
         'ND6_VN06FZxRfgVylJghAoKp4zZv6_yZVBu_1-yahlo&file=vehicle_positions.pb')
     feed.ParseFromString(response.content)
-    # print(feed.entity)
-    # print(type(feed.entity))
-    # a = str(feed.entity)
-    # print(a)
+
     for entity in feed.entity:
         # if entity.HasField('trip_update'):
         if get_only_trams(int(entity.vehicle.vehicle.id)):
