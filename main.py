@@ -6,7 +6,7 @@ trams_dataframe = pd.DataFrame()
 
 
 def get_only_trams(vehicle_id):
-    if 1 < vehicle_id < 999:
+    if 0 < vehicle_id < 999:
         return True
 
 
@@ -103,7 +103,7 @@ def create_data_frame_from_tram_data(tram_data):
     data_frame_merged = data_frame_vehicle_positions.merge(data_frame_trip_updates, how='inner')
     # print(data_frame_vehicle_positions)
     # print(data_frame_trip_updates)
-    # print(data_frame_merged.to_string())
+    #print(data_frame_merged.to_string())
     # print(vehicle_positions_list)
     # print(trip_updates_list)
     return (data_frame_merged)

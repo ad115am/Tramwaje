@@ -11,9 +11,10 @@ tram_data = main.create_data_frame_from_tram_data(main.get_tram_data())
 
 
 def show_trams_on_map(filter):
+    late=0
+    non_late=0
     filter = filter
-    valid_id = range(0, 1000)
-    print(filter)
+    valid_id = range(0, 100000)
     if filter == 'double-sided':
         valid_id = range(900, 999)
     elif filter == 'siemens':
@@ -28,10 +29,13 @@ def show_trams_on_map(filter):
             delay = int(tram['delay'])
             speed = int(tram['speed'])
             if delay > 120:
+                late+=1
                 icon = folium.Icon(color='red', icon="subway", prefix='fa')
             elif delay < -120:
+                non_late+=1
                 icon = folium.Icon(color='green', icon="subway", prefix='fa')
             else:
+                non_late+=1
                 icon = folium.Icon(color='blue', icon="subway", prefix='fa')
             folium.Marker(
                 location=[tram['lat'], tram['lon']],
@@ -40,11 +44,11 @@ def show_trams_on_map(filter):
                 icon=icon
 
             ).add_to(my_map)
-    print(my_map)
+    print(f'vehicles late: {(late/non_late)*100} %')
     my_map.save("map.html")
     webbrowser.open("map.html")
 
 
 show_trams_on_map('all')
-# show_trams_on_map('double-sided')
-# show_trams_on_map('siemens')
+#show_trams_on_map('double-sided')
+#show_trams_on_map('siemens')
